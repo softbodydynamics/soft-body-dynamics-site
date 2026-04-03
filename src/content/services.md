@@ -6,7 +6,7 @@ title: Services
 
 Complete digital identity creation. Each package includes highly consistent LORAs trained on custom-made, fully nude base models to ensure absolute anatomical and facial fidelity. These are paired with a fully posable 3D Blender model, giving you granular control over pose, lighting, and scene composition before generation even begins.
 
-Currently featuring Sophie—our flagship Spokane-based digital talent.
+Currently featuring Sophie—our flagship digital talent.
 
 ## AI Content Creation
 
