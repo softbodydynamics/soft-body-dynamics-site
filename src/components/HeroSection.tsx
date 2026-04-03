@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function HeroSection() {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const videoUrl = process.env.NEXT_PUBLIC_VIDEO_URL || "/trailer.mp4";
-  const posterUrl = process.env.NEXT_PUBLIC_POSTER_URL || "/trailer-poster.jpg";
+  const videoUrl = "https://pub-06e398be719b441fb0e09181c9e91684.r2.dev/trailer.mp4";
+  const posterUrl = "https://pub-06e398be719b441fb0e09181c9e91684.r2.dev/trailer-poster.jpg";
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-16">
