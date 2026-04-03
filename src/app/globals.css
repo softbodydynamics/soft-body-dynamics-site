@@ -1,0 +1,372 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@theme inline {
+  --color-space-void: #000000;
+  --color-space-deep: #050510;
+  --color-space-mid: #0a0a1a;
+  --color-sophie-purple: #8E44AD;
+  --color-sophie-purple-dim: rgba(142, 68, 173, 0.3);
+  --color-tech-teal: #3498DB;
+  --color-tech-teal-dim: rgba(52, 152, 219, 0.3);
+  --color-golden-glow: #F5C28A;
+  --color-golden-glow-dim: rgba(245, 194, 138, 0.25);
+  --color-glass-bg: rgba(255, 255, 255, 0.03);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-border-hover: rgba(255, 255, 255, 0.15);
+  --color-text-primary: rgba(255, 255, 255, 0.92);
+  --color-text-secondary: rgba(255, 255, 255, 0.55);
+  --color-text-dim: rgba(255, 255, 255, 0.35);
+
+  --font-jost: "Jost", sans-serif;
+  --font-source-serif: "Source Serif 4", serif;
+}
+
+/* === BASE RESETS === */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-space-void);
+  color: var(--color-text-primary);
+  font-family: var(--font-jost);
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(142, 68, 173, 0.35);
+  color: #fff;
+}
+
+/* === AMBIENT BACKGROUND BLOOMS === */
+
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ambient-bg::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(142, 68, 173, 0.045) 0%,
+    transparent 70%
+  );
+  filter: blur(80px);
+  animation: bloom-drift-1 45s ease-in-out infinite alternate;
+}
+
+.ambient-bg::after {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  right: -10%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(52, 152, 219, 0.035) 0%,
+    transparent 70%
+  );
+  filter: blur(90px);
+  animation: bloom-drift-2 55s ease-in-out infinite alternate;
+}
+
+@keyframes bloom-drift-1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(8vw, 12vh) scale(1.15);
+  }
+}
+
+@keyframes bloom-drift-2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-6vw, -8vh) scale(1.1);
+  }
+}
+
+/* === GLASSMORPHIC PANELS === */
+
+.glass-panel {
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  transition: border-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--color-glass-border-hover);
+  box-shadow:
+    0 0 30px rgba(142, 68, 173, 0.06),
+    0 0 60px rgba(52, 152, 219, 0.04);
+}
+
+.glass-panel-featured {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(142, 68, 173, 0.15);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  transition: border-color 0.6s ease, box-shadow 0.6s ease;
+}
+
+.glass-panel-featured:hover {
+  border-color: rgba(142, 68, 173, 0.3);
+  box-shadow:
+    0 0 40px rgba(142, 68, 173, 0.08),
+    0 0 80px rgba(52, 152, 219, 0.05);
+}
+
+/* === AGE GATE OVERLAY === */
+
+.age-gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+/* === CAPSULE BUTTONS === */
+
+.capsule-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-family: var(--font-jost);
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.capsule-btn-golden {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 194, 138, 0.15) 0%,
+    rgba(245, 194, 138, 0.08) 100%
+  );
+  border: 1px solid rgba(245, 194, 138, 0.3);
+  color: var(--color-golden-glow);
+}
+
+.capsule-btn-golden:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 194, 138, 0.25) 0%,
+    rgba(245, 194, 138, 0.12) 100%
+  );
+  border-color: rgba(245, 194, 138, 0.5);
+  box-shadow: 0 0 30px rgba(245, 194, 138, 0.15);
+}
+
+.capsule-btn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--color-text-primary);
+}
+
+.capsule-btn-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.capsule-btn-entry {
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(142, 68, 173, 0.2) 0%,
+    rgba(52, 152, 219, 0.15) 100%
+  );
+  border: 1px solid rgba(142, 68, 173, 0.3);
+  color: var(--color-text-primary);
+}
+
+.capsule-btn-entry:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(142, 68, 173, 0.35) 0%,
+    rgba(52, 152, 219, 0.25) 100%
+  );
+  border-color: rgba(142, 68, 173, 0.5);
+  box-shadow:
+    0 0 40px rgba(142, 68, 173, 0.15),
+    0 0 80px rgba(52, 152, 219, 0.08);
+}
+
+/* === ACCENT LINES === */
+
+.accent-line-purple {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-sophie-purple-dim) 20%,
+    var(--color-sophie-purple) 50%,
+    var(--color-sophie-purple-dim) 80%,
+    transparent 100%
+  );
+}
+
+.accent-line-teal {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-tech-teal-dim) 20%,
+    var(--color-tech-teal) 50%,
+    var(--color-tech-teal-dim) 80%,
+    transparent 100%
+  );
+}
+
+/* === PROSE OVERRIDES (Markdown Content) === */
+
+.prose {
+  --tw-prose-body: var(--color-text-secondary);
+  --tw-prose-headings: var(--color-text-primary);
+  --tw-prose-links: var(--color-tech-teal);
+  --tw-prose-bold: var(--color-text-primary);
+  --tw-prose-counters: var(--color-text-dim);
+  --tw-prose-bullets: var(--color-text-dim);
+}
+
+.prose p {
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+/* === SCROLLBAR === */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(142, 68, 173, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(142, 68, 173, 0.4);
+}
+
+/* === VIDEO POSTER FRAME === */
+
+.poster-frame {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 0 60px rgba(0, 0, 0, 0.5),
+    0 0 120px rgba(142, 68, 173, 0.04);
+}
+
+.poster-frame img,
+.poster-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Play button overlay */
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.15);
+  transition: background 0.5s ease;
+  cursor: pointer;
+}
+
+.play-overlay:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.play-overlay svg {
+  width: 56px;
+  height: 56px;
+  opacity: 0.7;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15));
+}
+
+.play-overlay:hover svg {
+  opacity: 0.95;
+  transform: scale(1.08);
+}
+
+/* === SOCIAL ICON LINKS === */
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-text-dim);
+  transition: all 0.5s ease;
+}
+
+.social-link:hover {
+  border-color: rgba(142, 68, 173, 0.3);
+  color: var(--color-sophie-purple);
+  box-shadow: 0 0 20px rgba(142, 68, 173, 0.1);
+}
+
+.social-link svg {
+  width: 1rem;
+  height: 1rem;
+}
