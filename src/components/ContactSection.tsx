@@ -15,7 +15,7 @@ export default function ContactSection() {
     return { a, b, answer: a + b };
   });
 
-  const discordUsername = "softbodydynamics";
+  const discordUsername = "soft.body.dynamics";
 
   const handleOpenCaptcha = () => {
     setState("captcha");
